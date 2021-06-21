@@ -1,6 +1,6 @@
 const Card = () => {
     return (
-    <div className="w-52 h-full rounded shadow-lg bg-green-200 flex flex-col justify-around">
+    <div className="w-60 sm:w-56 md:w-52 h-full rounded shadow-lg bg-green-200 flex flex-col justify-around">
         <div className="font-bold text-xl text-center my-2">The Coldest Sunset</div>
         <img src="https://via.placeholder.com/150" className="w-full" alt="quiz"/>
         <button className="btn btn-green py-1 m-3">Play Now</button>
