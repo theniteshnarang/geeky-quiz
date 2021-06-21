@@ -1,6 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-    margin: 0;
+
+.btn {
+    @apply font-bold rounded;
+}
+.btn-green {
+    @apply bg-green-500 text-white;
+}
+.btn-green:hover {
+    @apply bg-green-700;
+}
+/* 
+    TODO: Find a better alternative 
+*/
+@media (min-width: 850px) {
+    .content-area {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 850px) {
+    .content-area {
+        height: 100%;
+    }
 }
