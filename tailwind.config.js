@@ -9,6 +9,9 @@ module.exports = {
         secondary: '#BAE4CA',
         dark: '#F6DFEB',
         light: '#F8EDED'
+      },
+      screens: {
+        'md2': '832px'
       }
     },
     maxWidth: {
@@ -27,6 +30,9 @@ module.exports = {
       '45': '45%',
       '50': '50%',
       '60': '60%',
+      '70': '70%',
+      '80': '80%',
+      '90': '90%',
       'full': '100'
     }
   },
