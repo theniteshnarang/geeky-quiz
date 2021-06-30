@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef } from 'react'
-import { Option, Question } from '../../data/quiz.types'
+import { Question } from '../../data/quiz.types'
 export type QuizCardProps = Question & {
     score : number,
     currentIndex:number,
@@ -32,7 +32,8 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
         setIsOptionSelected(false)
         setSolution(false)
         setIsCorrect(false)
-        return isCorrect ? optionEl.current.classList.remove('bg-green-400') : optionEl.current.classList.remove('bg-red-400')
+        
+        return optionEl.current.classList.remove(`${isCorrect?"bg-green-400":"bg-red-400"}`) //eslint-disable-next-line react-hooks/exhaustive-deps
     },[currentIndex])
     return (
         <div className="w-full h-full sm:h-5/6 lg:h-2/3 mb-4 rounded shadow-lg bg-green-200 flex flex-col justify-evenly text-lg">
