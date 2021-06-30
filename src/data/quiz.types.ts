@@ -1,4 +1,4 @@
-type Option = {
+export type Option = {
     text : string,
     isRight : boolean
 }

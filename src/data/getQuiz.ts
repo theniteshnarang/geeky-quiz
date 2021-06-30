@@ -25,7 +25,7 @@ export const quizOne : Quiz= {
             },
             ],
             points: 5,
-            reason : ["Number() do the type conversion, whereas parseInt parses the value of input up to the first non-digit character"]
+            reason : ["Number() do the type conversion, whereas parseInt parses the value of input up to the first non-digit character."]
         },
         {
             id: 'Q02',
@@ -73,7 +73,7 @@ export const quizOne : Quiz= {
             },
             ],
             points: 5,
-            reason : ["object","That’s an officially recognized error in typeof behavior, coming from the early days of JavaScript and kept for compatibility.","Definitely, null is not an object. It is a special value with a separate type of its own."]
+            reason : ["Object","That’s an officially recognized error in typeof behavior, coming from the early days of JavaScript and kept for compatibility.","Definitely, null is not an object. It is a special value with a separate type of its own."]
         },
         {
             id: 'Q04',
@@ -97,7 +97,7 @@ export const quizOne : Quiz= {
             },
             ],
             points: 5,
-            reason : ["** is 'exponentiation operator' and + is 'unary plus operator'","3^4 = 81, +'string' // NaN"]
+            reason : ["** is 'exponentiation operator' and + is 'unary plus operator'","3^4 = 81, +'string' // NaN."]
         },
         {
             id: 'Q05',
@@ -121,7 +121,7 @@ export const quizOne : Quiz= {
             },
             ],
             points: 5,
-            reason : ["4 + '1' => '41' , '12' + 2 => '122'"]
+            reason : ["4 + '1' => '41' , '12' + 2 => '122'."]
         },
         {
             id: 'Q06',

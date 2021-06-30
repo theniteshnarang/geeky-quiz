@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 const Card = () => {
     return (
     <div className="w-60 sm:w-56 md:w-52 h-full rounded shadow-lg bg-green-200 flex flex-col justify-around text-center">
-        <div className="font-bold text-lg my-2">The Coldest Sunset</div>
+        <div className="font-bold text-lg my-2">Javascript</div>
         <img src="https://via.placeholder.com/150" className="w-full" alt="quiz"/>
         <Link to="/quiz" className="btn btn-green py-1 m-3">Play Now</Link>
     </div>
