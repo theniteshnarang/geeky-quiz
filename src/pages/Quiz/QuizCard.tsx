@@ -53,8 +53,10 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
                         {options.map((option,index)=>
                         <li key={index}
                             ref={optionEl}
-                            onClick={(e)=>checkSolution(e,option.isRight)}
-                            className={`w-96 cursor-pointer hover:bg-green-300 p-4`}>
+                            onClick={(e)=>{
+                                isOptionSelected || checkSolution(e,option.isRight)
+                            }}
+                            className={`hover:bg-green-300 w-96 cursor-pointer p-4`}>
                             <strong onClick={(e)=>e.stopPropagation()}>0{index+1}.</strong> {option.text}
                         </li>)
                         }
@@ -62,14 +64,14 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
                 )
             }
             <div className="flex justify-center gap-4 flex-wrap">
-                <button
+                {solution || <button
                     className="btn btn-green self-center w-10/12 max-w-xs"
                     onClick={()=>{
                         setCurrentIndex(currentIndex+1)
                     }}
                 >
                     Next
-                </button>
+                </button>}
                 { isOptionSelected && <button onClick={toggleSolution} className="btn border border-gray-600 self-center w-10/12 max-w-xs hover:bg-pink-500 hover:text-white">
                     {solution ? "Hide Solution" : "Show Solution"}
                 </button>}    
