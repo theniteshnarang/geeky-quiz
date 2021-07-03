@@ -9,19 +9,18 @@ export type QuizCardProps = Question & {
 export const QuizCard = ({options, points, question, reason, id, setCurrentIndex, currentIndex, score, setScore}: QuizCardProps) => {
     const [solution, setSolution] = useState(false)
     const [isOptionSelected, setIsOptionSelected] = useState(false)
-    const [isCorrect, setIsCorrect] = useState(false)
     const optionEl = useRef<any>(null)
-    function checkSolution(e:any,isRight:boolean){
+    
+    function checkSolution(e:any,isRight:boolean, index:number){
         setIsOptionSelected(true)
         if(isRight){
-            setIsCorrect(true)
             e.target.classList.add('bg-green-400')
             setScore(score + points)
         }else {
-            e.target.classList.add('bg-red-400')
-            setIsCorrect(false)
+            e.target.classList.remove('hover:bg-green-300')
+            e.target.classList.add('bg-red-400','hover:bg-red-300')
         }
-        optionEl.current = e.target   
+        optionEl.current = e.target
     }
 
     const toggleSolution = () => {
@@ -31,10 +30,12 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
     useEffect(()=>{
         setIsOptionSelected(false)
         setSolution(false)
-        setIsCorrect(false)
-        
-        return optionEl.current.classList.remove(`${isCorrect?"bg-green-400":"bg-red-400"}`) //eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => {
+            optionEl.current?.classList.remove('bg-red-400','bg-green-400')
+            optionEl.current?.classList.add('hover:bg-green-300')
+        }
     },[currentIndex])
+
     return (
         <div className="w-full h-full sm:h-5/6 lg:h-2/3 mb-4 rounded shadow-lg bg-green-200 flex flex-col justify-evenly text-lg">
             <h1 className="lg:text-xl font-bold pl-4">Question {id.match(/[0-9]/g)}. {question}</h1>
@@ -52,10 +53,7 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
                     <ul className="flex flex-wrap justify-center lg:justify-evenly">
                         {options.map((option,index)=>
                         <li key={index}
-                            ref={optionEl}
-                            onClick={(e)=>{
-                                isOptionSelected || checkSolution(e,option.isRight)
-                            }}
+                            onClick={(e)=> isOptionSelected || checkSolution(e,option.isRight,index)}
                             className={`hover:bg-green-300 w-96 cursor-pointer p-4`}>
                             <strong onClick={(e)=>e.stopPropagation()}>0{index+1}.</strong> {option.text}
                         </li>)

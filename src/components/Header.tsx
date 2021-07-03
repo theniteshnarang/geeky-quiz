@@ -8,7 +8,7 @@ export const Header = () => {
                 </div>
                 <nav>
                     <ul className="flex gap-x-5">
-                        <li><Link to="/profile" className="font-bold hover:text-pink-500">Profile</Link></li>
+                        <li><Link to="/login" className="font-bold hover:text-pink-500">Login</Link></li>
                     </ul>
                 </nav>
             </div>
