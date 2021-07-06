@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef } from 'react'
+import {useState, useEffect } from 'react'
 import { Question } from '../../data/quiz.types'
 export type QuizCardProps = Question & {
     score : number,
@@ -8,19 +8,13 @@ export type QuizCardProps = Question & {
 }
 export const QuizCard = ({options, points, question, reason, id, setCurrentIndex, currentIndex, score, setScore}: QuizCardProps) => {
     const [solution, setSolution] = useState(false)
-    const [isOptionSelected, setIsOptionSelected] = useState(false)
-    const optionEl = useRef<any>(null)
+    const [currentOption, setCurrentOption] = useState<number>(-1)
     
-    function checkSolution(e:any,isRight:boolean, index:number){
-        setIsOptionSelected(true)
+    function checkSolution(isRight:boolean, index:number){
+        setCurrentOption(index)
         if(isRight){
-            e.target.classList.add('bg-green-400')
             setScore(score + points)
-        }else {
-            e.target.classList.remove('hover:bg-green-300')
-            e.target.classList.add('bg-red-400','hover:bg-red-300')
         }
-        optionEl.current = e.target
     }
 
     const toggleSolution = () => {
@@ -28,12 +22,8 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
     }
 
     useEffect(()=>{
-        setIsOptionSelected(false)
         setSolution(false)
-        return () => {
-            optionEl.current?.classList.remove('bg-red-400','bg-green-400')
-            optionEl.current?.classList.add('hover:bg-green-300')
-        }
+        setCurrentOption(-1)
     },[currentIndex])
 
     return (
@@ -53,8 +43,11 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
                     <ul className="flex flex-wrap justify-center lg:justify-evenly">
                         {options.map((option,index)=>
                         <li key={index}
-                            onClick={(e)=> isOptionSelected || checkSolution(e,option.isRight,index)}
-                            className={`hover:bg-green-300 w-96 cursor-pointer p-4`}>
+                            onClick={(e)=> currentOption>=0 || checkSolution(option.isRight,index)}
+                            className={`hover:bg-green-300 w-96 cursor-pointer p-4
+                            ${currentOption >= 0 && option.isRight && "bg-green-400"}
+                            ${currentOption===index && !option.isRight && "bg-red-400"}
+                            `}>
                             <strong onClick={(e)=>e.stopPropagation()}>0{index+1}.</strong> {option.text}
                         </li>)
                         }
@@ -70,7 +63,7 @@ export const QuizCard = ({options, points, question, reason, id, setCurrentIndex
                 >
                     Next
                 </button>}
-                { isOptionSelected && <button onClick={toggleSolution} className="btn border border-gray-600 self-center w-10/12 max-w-xs hover:bg-pink-500 hover:text-white">
+                { currentOption>=0 && <button onClick={toggleSolution} className="btn border border-gray-600 self-center w-10/12 max-w-xs hover:bg-pink-500 hover:text-white">
                     {solution ? "Hide Solution" : "Show Solution"}
                 </button>}    
             </div>       
