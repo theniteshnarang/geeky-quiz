@@ -13,5 +13,7 @@ export type Question = {
 
 export type Quiz = {
     name : string,
-    questions : Question[]
+    questions : Question[],
+    image: string,
+    id:string
 }
