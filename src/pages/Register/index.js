@@ -1,3 +1,3 @@
-export { Login } from './Login.jsx'
-export { Signup } from './Signup.jsx'
-export { Register } from './Register.jsx'
+export { Login } from './Login.tsx'
+export { Signup } from './Signup.tsx'
+export { Register } from './Register.tsx'
